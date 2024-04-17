@@ -6,7 +6,7 @@
 /*   By: aistok <aistok@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 14:16:42 by aistok            #+#    #+#             */
-/*   Updated: 2024/04/09 14:26:56 by aistok           ###   ########.fr       */
+/*   Updated: 2024/04/17 18:40:16 by aistok           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,13 @@
 
 void	ft_bzero(void *s, size_t n)
 {
+	unsigned char	*src;
+
+	src = s;
 	while (n > 0)
 	{
-		*(char *)s = 0;
-		s++;
+		*src = 0;
+		src++;
 		n--;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: aistok <aistok@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 14:34:36 by aistok            #+#    #+#             */
-/*   Updated: 2024/04/09 15:29:11 by aistok           ###   ########.fr       */
+/*   Updated: 2024/04/17 18:41:26 by aistok           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,17 @@
 
 void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
-	unsigned char	*dest_saved;
+	unsigned char	*c_dest;
+	unsigned char	*c_src;
 
-	dest_saved = dest;
+	c_dest = (unsigned char *)dest;
+	c_src = (unsigned char *)src;
 	while (n > 0)
 	{
-		*(unsigned char *)dest = *(unsigned char *)src;
-		dest++;
-		src++;
+		*c_dest = *c_src;
+		c_dest++;
+		c_src++;
 		n--;
 	}
-	return (dest_saved);
+	return (dest);
 }

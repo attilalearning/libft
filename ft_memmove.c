@@ -6,41 +6,40 @@
 /*   By: aistok <aistok@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 16:04:18 by aistok            #+#    #+#             */
-/*   Updated: 2024/04/09 19:29:26 by aistok           ###   ########.fr       */
+/*   Updated: 2024/04/17 18:41:11 by aistok           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 
-/*
- *	NEEDS TESTING !!!!!
- */
 void	*ft_memmove(void *dest, const void *src, size_t n)
 {
-	void	*d;
+	unsigned char	*c_dest;
+	unsigned char	*c_src;
 	
-	d = dest;
-	if (dest <= src)
+	c_dest = (unsigned char *)dest;
+	c_src = (unsigned char *)src;
+	if (c_dest <= c_src)
 	{
 		while (n > 0)
 		{
-			*(char *)dest = *(char *)src;
+			*c_dest = *c_src;
 			n--;
-			dest++;
-			src++;
+			c_dest++;
+			c_src++;
 		}
 	}
 	else
 	{
-		dest = dest + n;
-		src = src + n;
+		c_dest = c_dest + n;
+		c_src = c_src + n;
 		while (n > 0)
 		{
-			dest--;
-			src--;
-			*(char *)dest = *(char *)src;
+			c_dest--;
+			c_src--;
+			*c_dest = *c_src;
 			n--;
 		}
 	}
-	return (d);
+	return (dest);
 }
