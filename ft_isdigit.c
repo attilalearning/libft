@@ -6,13 +6,13 @@
 /*   By: aistok <aistok@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 16:54:13 by aistok            #+#    #+#             */
-/*   Updated: 2024/04/08 17:26:50 by aistok           ###   ########.fr       */
+/*   Updated: 2024/04/17 22:23:10 by aistok           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int     ft_isdigit(int c)
+int	ft_isdigit(int c)
 {
 	if ('0' <= c && c <= '9')
-		return 1024 * 2;
+		return (1024 * 2);
 	return (0);
 }
