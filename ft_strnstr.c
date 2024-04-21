@@ -6,7 +6,7 @@
 /*   By: aistok <aistok@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 16:10:13 by aistok            #+#    #+#             */
-/*   Updated: 2024/04/19 19:28:45 by aistok           ###   ########.fr       */
+/*   Updated: 2024/04/21 14:40:17 by aistok           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,6 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 			if (*l != *btmp++)
 				break ;
 			l++;
-			//btmp++;
-			//chars--;
 		}
 		if (*l == 0)
 			return (b);
