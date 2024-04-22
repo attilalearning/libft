@@ -6,7 +6,7 @@
 /*   By: aistok <aistok@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 16:57:59 by aistok            #+#    #+#             */
-/*   Updated: 2024/04/21 21:04:15 by aistok           ###   ########.fr       */
+/*   Updated: 2024/04/22 22:07:34 by aistok           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,11 @@
  */
 void	*ft_calloc(size_t nmemb, size_t size)
 {
-	int	total_size;
+	size_t	total_size;
 	void	*ptr_to_mem_area;
 
 	total_size = nmemb * size;
-//	if (total_size == 0)
-//		return (0);
-	if (total_size / nmemb != size)
+	if (nmemb && size && (total_size / nmemb != size))
 	{
 		errno = ENOMEM;
 		return (0);
