@@ -6,7 +6,7 @@
 /*   By: aistok <aistok@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 16:45:57 by aistok            #+#    #+#             */
-/*   Updated: 2024/04/23 19:24:18 by aistok           ###   ########.fr       */
+/*   Updated: 2024/04/23 19:37:35 by aistok           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ char	*ft_strnstr(const char *big, const char *little, size_t len);
 char	*ft_strdup(const char *s);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_strjoin(char const *s1, char const *s2);
+char	*ft_strtrim(char const *s1, char const *set);
 
 int		ft_atoi(const char *nptr);
 
