@@ -6,12 +6,13 @@
 /*   By: aistok <aistok@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 16:57:59 by aistok            #+#    #+#             */
-/*   Updated: 2024/04/22 22:07:34 by aistok           ###   ########.fr       */
+/*   Updated: 2024/04/23 14:19:24 by aistok           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdlib.h>
+#include <stdint.h>
 #include <errno.h>
 
 /*
@@ -28,18 +29,25 @@
  *	is  suitably  aligned for any built-in type.  On error, calloc() returns
  *	NULL. NULL may also be returned by a successful call to calloc() with
  *	nmemb or size equal to zero.
+ *
+ *	NOTE:
+ *	The overflow test can also be done as below, however, this version
+ *	may still not catch all cases of overflow, since the total_size can
+ *	be a number that got overflown already?!
+ *	if (nmemb && size && (total_size / nmemb != size))
+ *
  */
 void	*ft_calloc(size_t nmemb, size_t size)
 {
 	size_t	total_size;
 	void	*ptr_to_mem_area;
 
-	total_size = nmemb * size;
-	if (nmemb && size && (total_size / nmemb != size))
+	if (nmemb && (SIZE_MAX / nmemb < size))
 	{
 		errno = ENOMEM;
 		return (0);
 	}
+	total_size = nmemb * size;
 	ptr_to_mem_area = malloc(total_size);
 	if (!ptr_to_mem_area)
 		return (0);
