@@ -6,36 +6,45 @@
 /*   By: aistok <aistok@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 20:03:45 by aistok            #+#    #+#             */
-/*   Updated: 2024/04/25 19:05:42 by aistok           ###   ########.fr       */
+/*   Updated: 2024/04/27 00:54:33 by aistok           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /* used for malloc and free */
 #include <stdlib.h>
-
 /* used for NULL pointer */
 #include <stddef.h>
-
 /* used for size_t type */
 #include <aio.h>
+/* used for errno and ENOMEM */
+#include <errno.h>
 
+size_t	wordlen_and_move_str_pointer(char **str, char c)
+{
+	size_t	len;
+	char	*s;
 
-
-
-// REMOVE BEFORE PUSHING TO GIT !!!
-//getchar()
-//#include <stdio.h>
-
-
-
-
+	len = 0;
+	s = *str;
+	while (*s != 0 && *s != c)
+	{
+		s++;
+		len++;
+	}
+	*str = s;
+	return (len);
+}
 
 /*
  *	THIS FUNCTION WILL RETURN THE 1ST WORD
  *	AND !!
  *	WILL ALSO MOVE THE *str POINTER TO POINT TO JUST RIGHT AFTER THE WORD
- *	THAT IS BEING EXTRACTED (SO, THE NEXT SEPARATOR OR THE '\0' END OF
+ *	THAT IS BEING EXTRACTED (SO, TO THE NEXT SEPARATOR OR THE '\0', THE END OF
  *	STRING! :)
+ *
+ *	NOTE:
+ *	For *str = ",,,a," and c = ',' this function will skip all the separators
+ *	at the beginning and will start extracting anything starting with the 'a'.
  */
 char	*extract_first_word(char **str, char c)
 {
@@ -46,24 +55,23 @@ char	*extract_first_word(char **str, char c)
 
 	len = 0;
 	s = *str;
-	if (*s != 0 && *s == c) //while
+	while (*s != 0 && *s == c)
 		s++;
+	if (*s == 0)
+		return (NULL);
 	ptr_word_begins = s;
-	while (*s != 0 && *s != c)
-	{
-		s++;
-		len++;
-	}
+	len = wordlen_and_move_str_pointer(&s, c);
 	*str = s;
 	word = (char *)malloc(sizeof(char) * len + 1);
 	if (!word)
+	{
+		errno = ENOMEM;
 		return (NULL);
+	}
 	while (ptr_word_begins != s)
 		*word++ = *ptr_word_begins++;
 	*word = 0;
-	while (len-- > 0)
-		word--;
-	//printf("Returning extracted word: \"%s\"\n", word);
+	word = word - len;
 	return (word);
 }
 
@@ -74,7 +82,7 @@ size_t	count_words(char *str, char c)
 	word_count = 0;
 	while (*str != 0)
 	{
-		if (*str != 0 && *str == c)
+		while (*str != 0 && *str == c)
 			str++;
 		if (*str == 0)
 			break ;
@@ -83,6 +91,24 @@ size_t	count_words(char *str, char c)
 			str++;
 	}
 	return (word_count);
+}
+
+void	free_array(char ***arr, size_t *i)
+{
+	char	**the_arr;
+
+	the_arr = *arr;
+	while (*i > 0)
+	{
+		if (the_arr[*i])
+			free(the_arr[*i]);
+		(*i)--;
+	}
+	if (the_arr[*i])
+		free(the_arr[*i]);
+	free(the_arr);
+	the_arr = NULL;
+	*arr = NULL;
 }
 
 /*
@@ -96,42 +122,34 @@ size_t	count_words(char *str, char c)
  *	NULL if the allocation fails.
  *
  *	NOTE:
- *	For ",,," this function will return [ "", "", NULL ], NULL signaling the
- *	end of the array. If this function is compared with strtkn from string.h,
- *	strtkn(",,,", ",") would return NULL !!
+ *	After i++; it might make a little sense to check if i is not greater than
+ *	count_words(str, c) (not to cause segmentation fault).
+ *	!!! IF s IS NULL, CASE IS NOT HANDLED (FUNCTION WILL BE 25+ LINES)
  */
 char	**ft_split(char const *s, char c)
 {
-	size_t	word_count;
 	size_t	i;
 	char	*word;
 	char	**arr;
 	char	*str;
 
 	str = (char *)s;
-	//printf("Counting words...\n");
-	word_count = count_words((char *)s, c);
-	//printf("word count = %zu\n", word_count);
-	arr = (char **)malloc(sizeof(char *) * word_count + 1);
+	arr = (char **)malloc(sizeof(char *) * count_words(str, c) + 1);
 	if (!arr)
+	{
+		errno = ENOMEM;
 		return (NULL);
+	}
 	i = 0;
-	if (!(*str == 0 || (*str == c && *(str + 1) == 0)))
-		while (*str != 0)
-		{
-			if (!(*str == c && *(str + 1) == 0))
-			{
-				word = extract_first_word(&str, c);
-				//printf("arr[%zu] = \"%s\"\n", i, word);
-				arr[i] = word; //if word == NULL ????
-				i++;
-			}
-			else
-				str++;
-			//printf("Press any key to continue...\n");
-			//getchar();
-		}
-	arr[i] = NULL;
-	//printf("arr[%zu] = \"%s\"\n", i, (char *)NULL);
+	word = extract_first_word(&str, c);
+	while (word)
+	{
+		arr[i++] = word;
+		word = extract_first_word(&str, c);
+	}
+	if (word == NULL && errno == ENOMEM)
+		free_array(&arr, &i);
+	else
+		arr[i] = NULL;
 	return (arr);
 }
