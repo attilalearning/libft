@@ -10,10 +10,16 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+/* used for ft_bzero */
 #include "libft.h"
+/* used for malloc */
 #include <stdlib.h>
+/* used for SIZE_MAX */
 #include <stdint.h>
+/* used for errno & ENOMEM */
 #include <errno.h>
+/* used for NULL */
+#include <stddef.h>
 
 /*
  *	DESCRIPTION
@@ -45,12 +51,12 @@ void	*ft_calloc(size_t nmemb, size_t size)
 	if (nmemb && (SIZE_MAX / nmemb < size))
 	{
 		errno = ENOMEM;
-		return (0);
+		return (NULL);
 	}
 	total_size = nmemb * size;
 	ptr_to_mem_area = malloc(total_size);
 	if (!ptr_to_mem_area)
-		return (0);
+		return (NULL);
 	else
 		ft_bzero(ptr_to_mem_area, total_size);
 	return (ptr_to_mem_area);

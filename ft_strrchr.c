@@ -10,10 +10,15 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+/* used for NULL */
+#include <stddef.h>
+
 char	*ft_strrchr(const char *s, int c)
 {
 	char	*beginning;
 
+	if (!s)
+		return (NULL);
 	beginning = (char *)s;
 	while (*s != 0)
 		s++;
@@ -23,5 +28,5 @@ char	*ft_strrchr(const char *s, int c)
 			return ((char *)s);
 		s--;
 	}
-	return (0);
+	return (NULL);
 }

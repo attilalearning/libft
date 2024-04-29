@@ -15,7 +15,7 @@
 /* used for NULL */
 #include <aio.h>
 
-int	length(int n)
+int	count_digits(int n)
 {
 	int	len;
 
@@ -42,7 +42,7 @@ char	*ft_itoa(int n)
 	int		len;
 	char	*str;
 
-	len = length(n);
+	len = count_digits(n);
 	str = (char *)malloc(sizeof(char) * len + 1);
 	if (!str)
 		return (NULL);

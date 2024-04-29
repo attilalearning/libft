@@ -10,12 +10,15 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+/* used for size_t */
 #include <aio.h>
 
 void	ft_memset(void *s, int c, size_t n)
 {
 	unsigned char	*src;
 
+	if (!s)
+		return ;
 	src = (unsigned char *)s;
 	while (n > 0)
 	{

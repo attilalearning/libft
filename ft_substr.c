@@ -13,17 +13,21 @@
 #include <stdlib.h>
 #include <aio.h>
 #include <errno.h>
+/* used for NULL */
+#include <stddef.h>
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	char	*str;
 	char	*result;
 
+	if (!s)
+		return (NULL);
 	str = (char *)malloc(sizeof(char) * len + 1);
 	if (!str)
 	{
 		errno = ENOMEM;
-		return (0);
+		return (NULL);
 	}
 	result = str;
 	while (len > 0 && *s != 0 && start-- > 0)

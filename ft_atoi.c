@@ -50,6 +50,8 @@ int	ft_atoi(const char *nptr)
 	char	sign;
 	int		number;
 
+	if (!nptr)
+		return (0);
 	sign = 1;
 	number = 0;
 	while (*nptr != 0 && ft_isspace(*nptr))

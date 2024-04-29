@@ -6,9 +6,12 @@
 /*   By: aistok <aistok@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 17:16:38 by aistok            #+#    #+#             */
-/*   Updated: 2024/04/23 20:44:44 by aistok           ###   ########.fr       */
+/*   Updated: 2024/04/29 14:00:14 by aistok           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+/* used for NULL */
+#include <stddef.h>
 
 /*
  *	DESCRIPTION
@@ -23,11 +26,13 @@
  */
 char	*ft_strchr(const char *s, int c)
 {
+	if (!s)
+		return (NULL);
 	while (*s != 0)
 	{
 		if (*s == (char)c)
 			return ((char *)s);
 		s++;
 	}
-	return (0);
+	return (NULL);
 }

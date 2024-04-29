@@ -6,17 +6,20 @@
 /*   By: aistok <aistok@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 16:04:18 by aistok            #+#    #+#             */
-/*   Updated: 2024/04/17 22:21:34 by aistok           ###   ########.fr       */
+/*   Updated: 2024/04/29 13:59:26 by aistok           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+/* used for NULL */
+#include <stddef.h>
 
 void	*ft_memmove(void *dest, const void *src, size_t n)
 {
 	unsigned char	*c_dest;
 	unsigned char	*c_src;
 
+	if (!dest || !src)
+		return (NULL);
 	c_dest = (unsigned char *)dest;
 	c_src = (unsigned char *)src;
 	if (c_dest <= c_src)

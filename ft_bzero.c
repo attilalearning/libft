@@ -10,12 +10,15 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+/* used for size_t */
 #include <aio.h>
 
 void	ft_bzero(void *s, size_t n)
 {
 	unsigned char	*src;
 
+	if (!s || !n)
+		return ;
 	src = s;
 	while (n > 0)
 	{

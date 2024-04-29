@@ -19,6 +19,8 @@ char	*ft_strdup(const char *s)
 	char	*str;
 	size_t	len;
 
+	if (!s)
+		return (NULL);
 	len = 0;
 	str = (char *)s;
 	while (*str++ != 0)
@@ -27,7 +29,7 @@ char	*ft_strdup(const char *s)
 	if (!str)
 	{
 		errno = ENOMEM;
-		return (0);
+		return (NULL);
 	}
 	while (*s != 0)
 		*str++ = *s++;

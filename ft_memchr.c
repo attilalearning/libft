@@ -10,12 +10,17 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+/* used for size_t */
 #include <aio.h>
+/* used for NULL */
+#include <stddef.h>
 
 void	*ft_memchr(const void *s, int c, size_t n)
 {
 	unsigned char	*ptr;
 
+	if (!s || !n)
+		return (NULL);
 	ptr = (unsigned char *)s;
 	while (n > 0)
 	{
@@ -24,5 +29,5 @@ void	*ft_memchr(const void *s, int c, size_t n)
 		ptr++;
 		n--;
 	}
-	return (0);
+	return (NULL);
 }
