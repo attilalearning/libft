@@ -6,7 +6,7 @@
 /*   By: aistok <aistok@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 17:26:22 by aistok            #+#    #+#             */
-/*   Updated: 2024/04/17 21:45:01 by aistok           ###   ########.fr       */
+/*   Updated: 2024/05/01 14:41:13 by aistok           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ size_t	ft_strlcat(char *dst, const char *src, size_t size)
 		*dst++ = *source++;
 		size--;
 		len++;
-		if (*source == 0)
+		if (*source == 0 || size == 1)
 			*dst = 0;
 	}
 	while (*source != 0)
