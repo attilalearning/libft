@@ -18,13 +18,12 @@
 void	ft_putstr_fd(char *s, int fd)
 {
 	size_t	len;
-	char	*str;
 
 	if (fd == -1 || !s)
 		return ;
 	len = 0;
-	str = s;
 	while (*s++ != 0)
 		len++;
-	write(fd, str, len);
+	s = s - len - 1;
+	write(fd, s, len);
 }

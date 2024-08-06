@@ -6,7 +6,7 @@
 /*   By: aistok <aistok@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 20:03:45 by aistok            #+#    #+#             */
-/*   Updated: 2024/04/27 00:54:33 by aistok           ###   ########.fr       */
+/*   Updated: 2024/05/06 17:22:06 by aistok           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,8 @@
 #include <stddef.h>
 /* used for size_t type */
 #include <aio.h>
-/* used for errno and ENOMEM */
-#include <errno.h>
 
-size_t	wordlen_and_move_str_pointer(char **str, char c)
+static size_t	wordlen_and_move_str_pointer(char **str, char c)
 {
 	size_t	len;
 	char	*s;
@@ -46,7 +44,7 @@ size_t	wordlen_and_move_str_pointer(char **str, char c)
  *	For *str = ",,,a," and c = ',' this function will skip all the separators
  *	at the beginning and will start extracting anything starting with the 'a'.
  */
-char	*extract_first_word(char **str, char c)
+static char	*extract_first_word(char **str, char c)
 {
 	size_t	len;
 	char	*ptr_word_begins;
@@ -62,12 +60,9 @@ char	*extract_first_word(char **str, char c)
 	ptr_word_begins = s;
 	len = wordlen_and_move_str_pointer(&s, c);
 	*str = s;
-	word = (char *)malloc(sizeof(char) * len + 1);
+	word = (char *)malloc(sizeof(char) * (len + 1));
 	if (!word)
-	{
-		errno = ENOMEM;
 		return (NULL);
-	}
 	while (ptr_word_begins != s)
 		*word++ = *ptr_word_begins++;
 	*word = 0;
@@ -75,7 +70,7 @@ char	*extract_first_word(char **str, char c)
 	return (word);
 }
 
-size_t	count_words(char *str, char c)
+static size_t	count_words(char *str, char c)
 {
 	size_t	word_count;
 
@@ -93,24 +88,6 @@ size_t	count_words(char *str, char c)
 	return (word_count);
 }
 
-void	free_array(char ***arr, size_t *i)
-{
-	char	**the_arr;
-
-	the_arr = *arr;
-	while (*i > 0)
-	{
-		if (the_arr[*i])
-			free(the_arr[*i]);
-		(*i)--;
-	}
-	if (the_arr[*i])
-		free(the_arr[*i]);
-	free(the_arr);
-	the_arr = NULL;
-	*arr = NULL;
-}
-
 /*
  *	Description
  *	Allocates (with malloc(3)) and returns an array of strings obtained by
@@ -124,7 +101,12 @@ void	free_array(char ***arr, size_t *i)
  *	NOTE:
  *	After i++; it might make a little sense to check if i is not greater than
  *	count_words(str, c) (not to cause segmentation fault).
- *	!!! IF s IS NULL, CASE IS NOT HANDLED (FUNCTION WILL BE 25+ LINES)
+ *	!!! Handled the case when s IS NULL, however, had to remove the check of
+ *		if (word == NULL && errno == ENOMEM)
+ *			free_array(&arr, &i);
+ *		because of norminette (FUNCTION WILL BE 25+ LINES)
+ *		NOTE: previous commit had the free_array included and had the s IS NULL
+ *		check excluded.
  */
 char	**ft_split(char const *s, char c)
 {
@@ -133,13 +115,12 @@ char	**ft_split(char const *s, char c)
 	char	**arr;
 	char	*str;
 
-	str = (char *)s;
-	arr = (char **)malloc(sizeof(char *) * count_words(str, c) + 1);
-	if (!arr)
-	{
-		errno = ENOMEM;
+	if (!s)
 		return (NULL);
-	}
+	str = (char *)s;
+	arr = (char **)malloc(sizeof(char *) * (count_words(str, c) + 1));
+	if (!arr)
+		return (NULL);
 	i = 0;
 	word = extract_first_word(&str, c);
 	while (word)
@@ -147,9 +128,6 @@ char	**ft_split(char const *s, char c)
 		arr[i++] = word;
 		word = extract_first_word(&str, c);
 	}
-	if (word == NULL && errno == ENOMEM)
-		free_array(&arr, &i);
-	else
-		arr[i] = NULL;
+	arr[i] = NULL;
 	return (arr);
 }

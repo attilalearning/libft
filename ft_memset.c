@@ -6,7 +6,7 @@
 /*   By: aistok <aistok@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 10:31:18 by aistok            #+#    #+#             */
-/*   Updated: 2024/04/30 00:42:01 by aistok           ###   ########.fr       */
+/*   Updated: 2024/05/06 15:22:23 by aistok           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@ void	*ft_memset(void *s, int c, size_t n)
 {
 	unsigned char	*src;
 
-	if (!s)
-		return (NULL);
 	src = (unsigned char *)s;
 	while (n > 0)
 	{

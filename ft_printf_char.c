@@ -1,41 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_printf_char.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aistok <aistok@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/29 13:02:44 by aistok            #+#    #+#             */
-/*   Updated: 2024/04/29 13:15:57 by aistok           ###   ########.fr       */
+/*   Created: 2024/05/12 18:59:52 by aistok            #+#    #+#             */
+/*   Updated: 2024/05/18 02:35:17 by aistok           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /* used for write */
 #include <unistd.h>
 
-void	ft_putnbr_fd(int n, int fd)
+int	ft_printf_char(const char ch)
 {
-	char	c;
-
-	if (fd == -1)
-		return ;
-	if (n / 10 == 0)
-	{
-		if (n < 0)
-		{
-			n = n * (-1);
-			write(fd, "-", sizeof(char));
-		}
-		c = (n % 10) + '0';
-		write(fd, &c, sizeof(char));
-	}
-	else
-	{
-		ft_putnbr_fd(n / 10, fd);
-		if (n < 0)
-			c = (n % 10) * (-1) + '0';
-		else
-			c = n % 10 + '0';
-		write(fd, &c, sizeof(char));
-	}
+	write(1, &ch, 1);
+	return (1);
 }

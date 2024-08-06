@@ -1,44 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcat.c                                       :+:      :+:    :+:   */
+/*   ft_printf_str.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aistok <aistok@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/12 17:26:22 by aistok            #+#    #+#             */
-/*   Updated: 2024/05/02 15:18:45 by aistok           ###   ########.fr       */
+/*   Created: 2024/05/12 18:59:52 by aistok            #+#    #+#             */
+/*   Updated: 2024/05/18 02:34:01 by aistok           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/* used for size_t */
-#include <aio.h>
+/* used for write */
+#include <unistd.h>
+/* used for ft_printf_str */
+#include "ft_printf.h"
 
-/*
- *	dst == NULL || src == NULL not handled
- */
-size_t	ft_strlcat(char *dst, const char *src, size_t size)
+int	ft_printf_str(const char *str)
 {
-	size_t		len;
+	int	len;
 
 	len = 0;
-	while (size > 0 && *dst != 0)
+	if (!str)
+		return (ft_printf_str("(null)"));
+	while (*str != 0)
 	{
-		dst++;
-		size--;
+		write(1, str, 1);
 		len++;
-	}
-	while (size > 1 && *src != 0)
-	{
-		*dst++ = *src++;
-		size--;
-		len++;
-		if (size == 1 || (size > 1 && *src == 0))
-			*dst = 0;
-	}
-	while (*src != 0)
-	{
-		src++;
-		len++;
+		str++;
 	}
 	return (len);
 }

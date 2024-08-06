@@ -6,10 +6,11 @@
 /*   By: aistok <aistok@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 18:38:42 by aistok            #+#    #+#             */
-/*   Updated: 2024/04/09 10:30:17 by aistok           ###   ########.fr       */
+/*   Updated: 2024/05/06 15:33:24 by aistok           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+/* used for size_t */
 #include <aio.h>
 
 size_t	ft_strlen(const char *s)
@@ -17,7 +18,7 @@ size_t	ft_strlen(const char *s)
 	size_t	len;
 
 	len = 0;
-	while (s && *s != 0)
+	while (*s != 0)
 	{
 		len++;
 		s++;

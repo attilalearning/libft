@@ -1,41 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_libft_version.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aistok <aistok@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/29 13:02:44 by aistok            #+#    #+#             */
-/*   Updated: 2024/04/29 13:15:57 by aistok           ###   ########.fr       */
+/*   Created: 2024/07/31 15:22:23 by aistok            #+#    #+#             */
+/*   Updated: 2024/07/31 15:23:33 by aistok           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/* used for write */
-#include <unistd.h>
-
-void	ft_putnbr_fd(int n, int fd)
+/*
+	v1.2	added ft_printf into libft (20240731-1533)
+		added get_next_line into libft (20240731-1533)
+	v1.0	only the bare functions required by 42
+*/
+double	ft_libft_version()
 {
-	char	c;
-
-	if (fd == -1)
-		return ;
-	if (n / 10 == 0)
-	{
-		if (n < 0)
-		{
-			n = n * (-1);
-			write(fd, "-", sizeof(char));
-		}
-		c = (n % 10) + '0';
-		write(fd, &c, sizeof(char));
-	}
-	else
-	{
-		ft_putnbr_fd(n / 10, fd);
-		if (n < 0)
-			c = (n % 10) * (-1) + '0';
-		else
-			c = n % 10 + '0';
-		write(fd, &c, sizeof(char));
-	}
+	return (1.2);
 }

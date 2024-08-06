@@ -1,44 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcat.c                                       :+:      :+:    :+:   */
+/*   ft_lstadd_front_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aistok <aistok@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/12 17:26:22 by aistok            #+#    #+#             */
-/*   Updated: 2024/05/02 15:18:45 by aistok           ###   ########.fr       */
+/*   Created: 2024/05/07 18:20:28 by aistok            #+#    #+#             */
+/*   Updated: 2024/05/09 16:49:51 by aistok           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/* used for size_t */
-#include <aio.h>
+/* used for t_list */
+#include "libft.h"
+/* used for NULL */
+#include <stddef.h>
 
 /*
- *	dst == NULL || src == NULL not handled
+ *	Description
+ *	Adds the node ’new’ at the beginning of the list.
+ *
+ *	Return value
+ *	None.
  */
-size_t	ft_strlcat(char *dst, const char *src, size_t size)
+void	ft_lstadd_front(t_list **lst, t_list *new)
 {
-	size_t		len;
+	t_list	*tmp;
 
-	len = 0;
-	while (size > 0 && *dst != 0)
+	if (!lst || !new)
+		return ;
+	if (!(*lst))
 	{
-		dst++;
-		size--;
-		len++;
+		*lst = new;
+		new->next = NULL;
+		return ;
 	}
-	while (size > 1 && *src != 0)
-	{
-		*dst++ = *src++;
-		size--;
-		len++;
-		if (size == 1 || (size > 1 && *src == 0))
-			*dst = 0;
-	}
-	while (*src != 0)
-	{
-		src++;
-		len++;
-	}
-	return (len);
+	tmp = new;
+	while (tmp->next)
+		tmp = tmp->next;
+	tmp->next = *lst;
+	*lst = new;
 }

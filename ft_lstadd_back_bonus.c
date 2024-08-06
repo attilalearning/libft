@@ -1,42 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*   ft_lstadd_back_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aistok <aistok@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/09 16:04:18 by aistok            #+#    #+#             */
-/*   Updated: 2024/05/06 16:13:06 by aistok           ###   ########.fr       */
+/*   Created: 2024/05/07 19:01:29 by aistok            #+#    #+#             */
+/*   Updated: 2024/05/09 17:33:58 by aistok           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+/* used for t_list */
+#include "libft.h"
 /* used for NULL */
 #include <stddef.h>
 
-void	*ft_memmove(void *dest, const void *src, size_t n)
+/*
+ *	Description
+ *	Adds the node ’new’ at the end of the list.
+ *
+ *	Return value
+ *	None.
+ *
+ *	NOTE: My get_next_line_bonus.c has a slightly better implementation
+ *	      of ft_lstadd_back :)
+ */
+void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	unsigned char	*c_dest;
-	unsigned char	*c_src;
+	t_list	*list;
 
-	if (!dest && !src)
-		return (NULL);
-	c_dest = (unsigned char *)dest;
-	c_src = (unsigned char *)src;
-	if (c_dest <= c_src)
+	if (!lst || !new)
+		return ;
+	list = *lst;
+	if (!list)
 	{
-		while (n-- > 0)
-			*c_dest++ = *c_src++;
+		*lst = new;
+		return ;
 	}
-	else
-	{
-		c_dest = c_dest + n;
-		c_src = c_src + n;
-		while (n-- > 0)
-		{
-			c_dest--;
-			c_src--;
-			*c_dest = *c_src;
-		}
-	}
-	return (dest);
+	while (list->next)
+		list = list->next;
+	list->next = new;
 }

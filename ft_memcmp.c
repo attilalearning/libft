@@ -28,7 +28,5 @@ int	ft_memcmp(const void *s1, const void *s2, size_t n)
 		zone2++;
 		n--;
 	}
-	if (n > 0)
-		return (*zone1 - *zone2);
 	return (0);
 }

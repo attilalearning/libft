@@ -6,12 +6,15 @@
 /*   By: aistok <aistok@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 19:37:49 by aistok            #+#    #+#             */
-/*   Updated: 2024/04/23 22:59:46 by aistok           ###   ########.fr       */
+/*   Updated: 2024/05/11 22:54:34 by aistok           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+/* used for ft_strchr, ft_strdup, ft_calloc, ft_memcpy */
 #include "libft.h"
+/* used for size_t */
 #include <aio.h>
+/* used for NULL */
 #include <stddef.h>
 
 /*
@@ -40,8 +43,10 @@ char	*ft_strtrim(char const *s1, char const *set)
 	if (!s1)
 		return (NULL);
 	start = (char *)s1;
-	while (set != NULL && start != 0 && ft_strchr(set, *start) != 0)
+	while (set != NULL && *start != 0 && ft_strchr(set, *start) != 0)
 		start++;
+	if (*start == 0)
+		return (ft_strdup(""));
 	end = (char *)s1;
 	while (*end != 0)
 		end++;
@@ -52,7 +57,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 	len = end - start + 1;
 	result = (char *)ft_calloc(len + 1, sizeof(char));
 	if (!result)
-		return (0);
+		return (NULL);
 	result = ft_memcpy(result, start, len);
 	return (result);
 }

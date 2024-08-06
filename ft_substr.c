@@ -6,29 +6,42 @@
 /*   By: aistok <aistok@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 15:17:54 by aistok            #+#    #+#             */
-/*   Updated: 2024/04/23 16:12:52 by aistok           ###   ########.fr       */
+/*   Updated: 2024/05/02 21:35:08 by aistok           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+/* used for malloc */
 #include <stdlib.h>
+/* used for size_t */
 #include <aio.h>
-#include <errno.h>
 /* used for NULL */
 #include <stddef.h>
+/* used for ft_strlen & ft_strdup */
+#include "libft.h"
 
+/*
+ *	If slen = 0 it means, we have an empty string (terminated by '\0'), hence
+ *	slen <= start is OK!
+ *
+ *	NOTE: start goes from 0 to string len - 1
+ */
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	char	*str;
 	char	*result;
+	size_t	slen;
 
 	if (!s)
 		return (NULL);
-	str = (char *)malloc(sizeof(char) * len + 1);
+	slen = ft_strlen(s);
+	if (slen <= start)
+		return (ft_strdup(""));
+	else
+		if (len > slen - start)
+			len = slen - start;
+	str = (char *)malloc(sizeof(char) * (len + 1));
 	if (!str)
-	{
-		errno = ENOMEM;
 		return (NULL);
-	}
 	result = str;
 	while (len > 0 && *s != 0 && start-- > 0)
 		s++;

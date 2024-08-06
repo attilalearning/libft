@@ -6,7 +6,7 @@
 /*   By: aistok <aistok@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 14:49:32 by aistok            #+#    #+#             */
-/*   Updated: 2024/04/23 19:23:53 by aistok           ###   ########.fr       */
+/*   Updated: 2024/05/09 14:48:12 by aistok           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,6 @@ int	ft_atoi(const char *nptr)
 	char	sign;
 	int		number;
 
-	if (!nptr)
-		return (0);
 	sign = 1;
 	number = 0;
 	while (*nptr != 0 && ft_isspace(*nptr))
@@ -64,7 +62,7 @@ int	ft_atoi(const char *nptr)
 	}
 	while (*nptr != 0 && ft_isdigit(*nptr))
 	{
-		number = number * 10 + (*nptr - 48);
+		number = number * 10 + (*nptr - '0');
 		nptr++;
 	}
 	return (number * sign);

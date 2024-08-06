@@ -6,7 +6,7 @@
 /*   By: aistok <aistok@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 14:34:36 by aistok            #+#    #+#             */
-/*   Updated: 2024/04/29 21:49:01 by aistok           ###   ########.fr       */
+/*   Updated: 2024/05/06 16:05:01 by aistok           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 	unsigned char	*c_dest;
 	unsigned char	*c_src;
 
-	if (!dest || !src)
+	if (!dest && !src)
 		return (NULL);
 	c_dest = (unsigned char *)dest;
 	c_src = (unsigned char *)src;

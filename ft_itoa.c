@@ -6,7 +6,7 @@
 /*   By: aistok <aistok@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 01:34:33 by aistok            #+#    #+#             */
-/*   Updated: 2024/04/27 21:03:02 by aistok           ###   ########.fr       */
+/*   Updated: 2024/05/06 00:59:57 by aistok           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 /* used for NULL */
 #include <aio.h>
 
-int	count_digits(int n)
+static int	count_digits(int n)
 {
 	int	len;
 
@@ -43,7 +43,7 @@ char	*ft_itoa(int n)
 	char	*str;
 
 	len = count_digits(n);
-	str = (char *)malloc(sizeof(char) * len + 1);
+	str = (char *)malloc(sizeof(char) * (len + 1));
 	if (!str)
 		return (NULL);
 	str[0] = '-';
@@ -53,9 +53,9 @@ char	*ft_itoa(int n)
 	while (n != 0)
 	{
 		if (n < 0)
-			str[--len] = (n % 10) * (-1) + 48;
+			str[--len] = (n % 10) * (-1) + '0';
 		else
-			str[--len] = n % 10 + 48;
+			str[--len] = n % 10 + '0';
 		n = n / 10;
 	}
 	return (str);

@@ -1,44 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcat.c                                       :+:      :+:    :+:   */
+/*   ft_lstsize_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aistok <aistok@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/12 17:26:22 by aistok            #+#    #+#             */
-/*   Updated: 2024/05/02 15:18:45 by aistok           ###   ########.fr       */
+/*   Created: 2024/05/07 18:43:08 by aistok            #+#    #+#             */
+/*   Updated: 2024/05/07 18:50:11 by aistok           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/* used for size_t */
-#include <aio.h>
+/* used for t_list */
+#include "libft.h"
 
 /*
- *	dst == NULL || src == NULL not handled
+ *	Description
+ *	Counts the number of nodes in a list.
+ *
+ *	Return value
+ *	The length of the list.
  */
-size_t	ft_strlcat(char *dst, const char *src, size_t size)
+int	ft_lstsize(t_list *lst)
 {
-	size_t		len;
+	int	len;
 
 	len = 0;
-	while (size > 0 && *dst != 0)
+	while (lst)
 	{
-		dst++;
-		size--;
 		len++;
-	}
-	while (size > 1 && *src != 0)
-	{
-		*dst++ = *src++;
-		size--;
-		len++;
-		if (size == 1 || (size > 1 && *src == 0))
-			*dst = 0;
-	}
-	while (*src != 0)
-	{
-		src++;
-		len++;
+		lst = lst->next;
 	}
 	return (len);
 }
