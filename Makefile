@@ -6,7 +6,7 @@
 #    By: aistok <aistok@student.42london.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/29 20:26:54 by aistok            #+#    #+#              #
-#    Updated: 2024/07/31 15:24:59 by aistok           ###   ########.fr        #
+#    Updated: 2024/08/06 11:17:09 by aistok           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -93,11 +93,16 @@ OBJS_GNL_BONUS	= $(addprefix $(OBJS_DIR)/, $(FILES_GNL_BONUS:.c=.o))
 $(OBJS_DIR)/%.o: %.c | $(OBJS_DIR)
 	$(CC) $(CFLAGS) -c $< -o $@
 
-# this is now replaced by the bonus rule, so that everything is added to the
-# libft.a file
+# this is now replaced by the bonus rule, so that everything is added to
+# the libft.a file
 #$(NAME): $(OBJS) $(OBJS_FTPF) $(OBJS_GNL_BONUS) | $(LIB_DIR)
 #	$(AR) $@ $^
-$(NAME): bonus
+#$(NAME): bonus
+# with $(NAME): bonus, the project gor re-archived every time make was
+# executed!!! NOT GOOD! "make" only needs to act, if there was some change
+# int the dependency files?!?!!!!!
+$(NAME): $(OBJS) $(OBJS_B) $(OBJS_FTPF) $(OBJS_GNL_BONUS) | $(LIB_DIR)
+	$(AR) $(NAME) $^
 
 $(LIB_DIR):
 	mkdir -p $(LIB_DIR)
@@ -105,11 +110,13 @@ $(LIB_DIR):
 $(OBJS_DIR):
 	mkdir -p $(OBJS_DIR)
 
-#all: $(NAME)
-all: bonus
+all: $(NAME)
+#all: bonus
 
-bonus: $(OBJS) $(OBJS_B) $(OBJS_FTPF) $(OBJS_GNL_BONUS) | $(LIB_DIR)
-	$(AR) $(NAME) $^
+# bonus rule de-activated, since it archived the project each time it was
+# called!!! Which is not desirable!
+#bonus: $(OBJS) $(OBJS_B) $(OBJS_FTPF) $(OBJS_GNL_BONUS) | $(LIB_DIR)
+#	$(AR) $(NAME) $^
 
 clean:
 	$(RM) $(OBJS) $(OBJS_B) $(OBJS_FTPF) $(OBJS_GNL_BONUS)
@@ -127,4 +134,5 @@ TEST_SO = libft.so
 so:
 	gcc -fPIC -shared -o $(TEST_SO) $(SRCS) $(SRCS_B)
 
-.PHONY: all bonus clean fclean re so
+#.PHONY: all bonus clean fclean re so
+.PHONY: all clean fclean re so
