@@ -6,7 +6,7 @@
 /*   By: aistok <aistok@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 15:22:23 by aistok            #+#    #+#             */
-/*   Updated: 2024/07/31 15:23:33 by aistok           ###   ########.fr       */
+/*   Updated: 2024/08/08 17:48:31 by aistok           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 		added get_next_line into libft (20240731-1533)
 	v1.0	only the bare functions required by 42
 */
-double	ft_libft_version()
+double	ft_libft_version(void)
 {
 	return (1.2);
 }

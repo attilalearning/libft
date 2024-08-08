@@ -6,7 +6,7 @@
 /*   By: aistok <aistok@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 16:45:57 by aistok            #+#    #+#             */
-/*   Updated: 2024/05/21 17:22:40 by aistok           ###   ########.fr       */
+/*   Updated: 2024/08/08 17:49:50 by aistok           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define LIBFT_H
 # include <aio.h>
 
-double	ft_libft_version();
+double	ft_libft_version(void);
 
 int		ft_isalpha(int c);
 int		ft_isdigit(int c);
@@ -39,7 +39,7 @@ char	**ft_split(char const *s, char c);
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 void	ft_striteri(char *s, void (*f)(unsigned int, char*));
 
-int	ft_isspace(const char c);
+int		ft_isspace(const char c);
 char	*ft_itoa(int n);
 int		ft_atoi(const char *nptr);
 
