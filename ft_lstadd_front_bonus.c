@@ -28,12 +28,6 @@ void	ft_lstadd_front(t_list **lst, t_list *new)
 
 	if (!lst || !new)
 		return ;
-	if (!(*lst))
-	{
-		*lst = new;
-		new->next = NULL;
-		return ;
-	}
 	tmp = new;
 	while (tmp->next)
 		tmp = tmp->next;

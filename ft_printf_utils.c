@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-/* used for size_t */
+/* used for size_t & ssize_t */
 #include <aio.h>
 /* used for write */
 #include <unistd.h>
@@ -36,7 +36,7 @@ int	ft_printf_count_unsigned_digits(size_t n)
 {
 	int	len;
 
-	len = 1 + (n < 0);
+	len = 1;
 	while (n / 10 != 0)
 	{
 		n = n / 10;

@@ -17,5 +17,5 @@
 */
 double	ft_libft_version(void)
 {
-	return (1.2);
+	return (1.3);
 }

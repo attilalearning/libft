@@ -22,13 +22,11 @@
 int	ft_printf_ptr(size_t nbr, int base, char *bdigit)
 {
 	int		len;
-	size_t	nbr_cpy;
 	t_list	*str;
 
 	if (nbr == 0)
 		return (ft_printf_str("(nil)"));
 	str = NULL;
-	nbr_cpy = nbr;
 	len = ft_printf_count_unsigned_digits(nbr);
 	while (nbr != 0)
 	{

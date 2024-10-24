@@ -21,23 +21,18 @@
  *
  *	Return value
  *	None.
- *
- *	NOTE: My get_next_line_bonus.c has a slightly better implementation
- *	      of ft_lstadd_back :)
  */
 void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	t_list	*list;
+	t_list	*last;
 
 	if (!lst || !new)
 		return ;
-	list = *lst;
-	if (!list)
-	{
+	last = *lst;
+	while (last && last->next)
+		last = last->next;
+	if (!last)
 		*lst = new;
-		return ;
-	}
-	while (list->next)
-		list = list->next;
-	list->next = new;
+	else
+		last->next = new;
 }

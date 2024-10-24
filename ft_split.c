@@ -59,10 +59,10 @@ static char	*extract_first_word(char **str, char c)
 		return (NULL);
 	ptr_word_begins = s;
 	len = wordlen_and_move_str_pointer(&s, c);
-	*str = s;
-	word = (char *)malloc(sizeof(char) * (len + 1));
+	word = malloc(sizeof(char) * (len + 1));
 	if (!word)
 		return (NULL);
+	*str = s;
 	while (ptr_word_begins != s)
 		*word++ = *ptr_word_begins++;
 	*word = 0;
@@ -118,7 +118,7 @@ char	**ft_split(char const *s, char c)
 	if (!s)
 		return (NULL);
 	str = (char *)s;
-	arr = (char **)malloc(sizeof(char *) * (count_words(str, c) + 1));
+	arr = malloc(sizeof(char *) * (count_words(str, c) + 1));
 	if (!arr)
 		return (NULL);
 	i = 0;

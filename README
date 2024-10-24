@@ -1,0 +1,8 @@
+In the "Reviewing libft for any mismatches!" series of reviews, there is
+still ft_printf* to be reviewed.
+
+See notes for testing in ft_strlcat.c !
+
+Some .c files are missing the comments for the functions.
+
+AND, all the reviewed and modified files so far NEED testing!!!

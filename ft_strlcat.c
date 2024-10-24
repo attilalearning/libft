@@ -15,6 +15,11 @@
 
 /*
  *	dst == NULL || src == NULL not handled
+ *
+ *	NOTE:
+ *	Should test against the original strlcat function to see if the
+ *	condition in the 1st while loop is correct to be size > 0 and
+ *	NOT size > 1 ????
  */
 size_t	ft_strlcat(char *dst, const char *src, size_t size)
 {

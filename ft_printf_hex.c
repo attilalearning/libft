@@ -30,11 +30,7 @@ int	ft_printf_hex(unsigned int nbr, int base, char *bdigit)
 		str = ft_lstnew(alloc_ch('0'));
 	while (nbr != 0)
 	{
-		if (nbr < 0)
-			ft_lstadd_front(&str, \
-				ft_lstnew(alloc_ch(bdigit[(nbr % base) * (-1)])));
-		else
-			ft_lstadd_front(&str, ft_lstnew(alloc_ch(bdigit[nbr % base])));
+		ft_lstadd_front(&str, ft_lstnew(alloc_ch(bdigit[nbr % base])));
 		nbr = nbr / base;
 	}
 	len = ft_printf_str_list(str);

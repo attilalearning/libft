@@ -13,6 +13,12 @@
 /* used for size_t */
 #include <aio.h>
 
+/*
+ *	NOTE:
+ *	The 2nd while loop (now 7 lines) could be rewritten into two lines:
+ *	while (size-- > 1 && *source != 0)
+ *		*dst++ = *source++;
+ */
 size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 {
 	size_t		len;

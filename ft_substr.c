@@ -24,6 +24,10 @@
  *	slen <= start is OK!
  *
  *	NOTE: start goes from 0 to string len - 1
+ *
+ *	NOTE: the 2nd while loop can be shortened from 5 lines to only 2:
+ *	while (len-- > 0 && *s != 0)
+ *		*str++ = *s++;
  */
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
@@ -39,7 +43,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	else
 		if (len > slen - start)
 			len = slen - start;
-	str = (char *)malloc(sizeof(char) * (len + 1));
+	str = malloc(sizeof(char) * (len + 1));
 	if (!str)
 		return (NULL);
 	result = str;

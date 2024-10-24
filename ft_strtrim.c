@@ -55,7 +55,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 	while (set != NULL && end > start && ft_strchr(set, *end) != 0)
 		end--;
 	len = end - start + 1;
-	result = (char *)ft_calloc(len + 1, sizeof(char));
+	result = ft_calloc(len + 1, sizeof(char));
 	if (!result)
 		return (NULL);
 	result = ft_memcpy(result, start, len);

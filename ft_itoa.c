@@ -43,7 +43,7 @@ char	*ft_itoa(int n)
 	char	*str;
 
 	len = count_digits(n);
-	str = (char *)malloc(sizeof(char) * (len + 1));
+	str = malloc(sizeof(char) * (len + 1));
 	if (!str)
 		return (NULL);
 	str[0] = '-';
