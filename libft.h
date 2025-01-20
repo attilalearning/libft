@@ -26,6 +26,7 @@ size_t	ft_strlen(const char *s);
 size_t	ft_strlcpy(char *dst, const char *src, size_t size);
 size_t	ft_strlcat(char *dst, const char *src, size_t size);
 int		ft_toupper(int c);
+char	*ft_toupper_str(char *str);
 int		ft_tolower(int c);
 char	*ft_strchr(const char *s, int c);
 char	*ft_strrchr(const char *s, int c);
@@ -41,6 +42,8 @@ void	ft_striteri(char *s, void (*f)(unsigned int, char*));
 
 int		ft_isspace(const char c);
 char	*ft_itoa(int n);
+int		ft_abs(int n);
+double	ft_atod(char *nbr);
 int		ft_atoi(const char *nptr);
 
 void	*ft_memset(void *s, int c, size_t n);

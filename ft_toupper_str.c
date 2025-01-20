@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/fractol.h"
+#include "libft.h"
 
 char	*ft_toupper_str(char *str)
 {
@@ -18,7 +18,7 @@ char	*ft_toupper_str(char *str)
 	int		i;
 
 	if (!str)
-		return (NULL);
+		return (0);
 	capital_str = ft_strdup(str);
 	i = 0;
 	while (capital_str[i])

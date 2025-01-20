@@ -20,7 +20,9 @@ CFLAGS = -Wall -Wextra -Werror
 AR = ar rcs
 RM = rm -f
 
-FILES =		ft_atoi \
+FILES =		ft_abs \
+		ft_atod \
+		ft_atoi \
 		ft_bzero \
 		ft_calloc \
 		ft_isalnum \
@@ -54,6 +56,7 @@ FILES =		ft_atoi \
 		ft_substr \
 		ft_tolower \
 		ft_toupper \
+		ft_toupper_str \
 		ft_libft_version
 
 FILES_B =	ft_lstadd_back_bonus \

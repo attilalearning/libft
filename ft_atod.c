@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/fractol.h"
+#include "libft.h"
 
 /*
  *	THIS FUNCTION IS CALLED BY ft_atod, AND!

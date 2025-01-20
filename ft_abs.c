@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/fractol.h"
+#include "libft.h"
 
 // !!! INT_MIN & INT_MAX ???
 int	ft_abs(int n)
